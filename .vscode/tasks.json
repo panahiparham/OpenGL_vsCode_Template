@@ -8,9 +8,26 @@
 			"args": [
 				"/Zi",
 				"/EHsc",
+				"/MD",
 				"/Fe:",
 				"${fileDirname}\\${fileBasenameNoExtension}.exe",
-				"${file}"
+				"${file}",
+
+				"${workspaceFolder}\\GLFW\\lib-vc2019\\glfw3.lib",
+
+				"C:\\Program Files (x86)\\Windows Kits\\10\\Lib\\10.0.18362.0\\um\\x86\\OpenGL32.Lib",
+
+				"C:\\Program Files (x86)\\Windows Kits\\10\\Lib\\10.0.18362.0\\um\\x86\\User32.Lib",
+				"C:\\Program Files (x86)\\Windows Kits\\10\\Lib\\10.0.18362.0\\um\\x86\\Gdi32.Lib",
+				"C:\\Program Files (x86)\\Windows Kits\\10\\Lib\\10.0.18362.0\\um\\x86\\shell32.lib",
+
+				"${workspaceFolder}\\GLUT\\glut32.lib",
+
+				"/I${workspaceFolder}\\GLFW\\include",
+				"/I${workspaceFolder}\\GLUT",
+
+
+				"/Link /NODEFAULTLIB:msvcrt.lib"
 			],
 			"options": {
 				"cwd": "${workspaceFolder}"
