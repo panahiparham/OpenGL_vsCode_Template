@@ -111,10 +111,96 @@ void main(int argc, char** argv)
 <br /> now build the project wiht ctrl+shift+B and if everything is fine u can run testGlut.exe too see the result.
 
 
-### Setting up GLUT
+### Setting up GLFW
 
 <br /> to setup GLFW first download the windows binaries from [their website](https://www.glfw.org/download.html) and place the contents of glfw folder in  `GLFW/` in our project. we will only need `include/` and `lib-vc2019` or equivalent.
 
 <br /> next we add the include path to the "includePath" of `c_cpp_properties.json` with `"${workspaceFolder}\\dependencies\\GLFW\\include"` and to "args" of `tasks,json` with `"/I${workspaceFolder}\\dependencies\\GLFW\\include"`. then link with `glfw3.lib` by adding `"C:\\DEV\\Graphics\\neelaGL\\dependencies\\GLFW\\lib-vc2019\\glfw3.lib"` to "args" of `tasks.json`.
 
 <br /> to test if everything worked create `testGLFW.cpp` and copy the contents of [GLFW's quickstart guide](https://www.glfw.org/documentation.html) into it, then build and run
+
+
+### Setting up GLEW
+
+<br /> unlike GLUT, GLFW does not provide an OpenGL extension wrangler so we need to use one like [GLEW](http://glew.sourceforge.net/) download the windows binaries and unpack the filed into `GLEW/` folder we will need the `include/` and `lib/Release/Win32/glew32s.lib` once again we include the path in `tasks.json` and `c_cpp_properties.json` and link with `lib/Release/Win32/glew32s.lib` after everything is done `tasks.json` will look like
+
+```
+{
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"type": "cppbuild",
+			"label": "C/C++: cl.exe build active file",
+			"command": "cl.exe",
+			"args": [
+				"/Zi",
+				"/EHsc",
+				"/MD",
+				"/Fe:",
+				"${fileDirname}\\${fileBasenameNoExtension}.exe",
+				"${file}",
+
+				"${workspaceFolder}\\GLFW\\lib-vc2019\\glfw3.lib",
+				"${workspaceFolder}\\GLEW\\lib\\Release\\Win32\\glew32s.lib",
+
+				"C:\\Program Files (x86)\\Windows Kits\\10\\Lib\\10.0.18362.0\\um\\x86\\OpenGL32.Lib",
+
+				"C:\\Program Files (x86)\\Windows Kits\\10\\Lib\\10.0.18362.0\\um\\x86\\User32.Lib",
+				"C:\\Program Files (x86)\\Windows Kits\\10\\Lib\\10.0.18362.0\\um\\x86\\Gdi32.Lib",
+				"C:\\Program Files (x86)\\Windows Kits\\10\\Lib\\10.0.18362.0\\um\\x86\\shell32.lib",
+
+				"${workspaceFolder}\\GLUT\\glut32.lib",
+
+				"/I${workspaceFolder}\\GLFW\\include",
+				"/I${workspaceFolder}\\GLEW\\include",
+
+				"/I${workspaceFolder}\\GLUT",
+
+
+				"/Link /NODEFAULTLIB:msvcrt.lib"
+			],
+			"options": {
+				"cwd": "${workspaceFolder}"
+			},
+			"problemMatcher": [
+				"$msCompile"
+			],
+			"group": {
+				"kind": "build",
+				"isDefault": true
+			},
+			"detail": "compiler: cl.exe"
+		}
+	]
+}
+```
+
+and `c_cpp_properties.json` will look like
+
+```
+{
+    "configurations": [
+        {
+            "name": "Win32",
+            "includePath": [
+                "${workspaceFolder}/**",
+                "${workspaceFolder}\\GLUT",
+                "${workspaceFolder}\\GLFW\\include",
+                "${workspaceFolder}\\GLEW\\include"
+
+            ],
+            "defines": [
+                "_DEBUG",
+                "UNICODE",
+                "_UNICODE"
+            ],
+            "windowsSdkVersion": "10.0.18362.0",
+            "compilerPath": "C:/Program Files (x86)/Microsoft Visual Studio/2019/Community/VC/Tools/MSVC/14.27.29110/bin/Hostx64/x64/cl.exe",
+            "cStandard": "c17",
+            "cppStandard": "c++17",
+            "intelliSenseMode": "msvc-x64"
+        }
+    ],
+    "version": 4
+}
+```

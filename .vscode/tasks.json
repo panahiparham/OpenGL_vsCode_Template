@@ -14,6 +14,7 @@
 				"${file}",
 
 				"${workspaceFolder}\\GLFW\\lib-vc2019\\glfw3.lib",
+				"${workspaceFolder}\\GLEW\\lib\\Release\\Win32\\glew32s.lib",
 
 				"C:\\Program Files (x86)\\Windows Kits\\10\\Lib\\10.0.18362.0\\um\\x86\\OpenGL32.Lib",
 
@@ -24,6 +25,8 @@
 				"${workspaceFolder}\\GLUT\\glut32.lib",
 
 				"/I${workspaceFolder}\\GLFW\\include",
+				"/I${workspaceFolder}\\GLEW\\include",
+
 				"/I${workspaceFolder}\\GLUT",
 
 
