@@ -117,4 +117,4 @@ void main(int argc, char** argv)
 
 <br /> next we add the include path to the "includePath" of `c_cpp_properties.json` with `"${workspaceFolder}\\dependencies\\GLFW\\include"` and to "args" of `tasks,json` with `"/I${workspaceFolder}\\dependencies\\GLFW\\include"`. then link with `glfw3.lib` by adding `"C:\\DEV\\Graphics\\neelaGL\\dependencies\\GLFW\\lib-vc2019\\glfw3.lib"` to "args" of `tasks.json`.
 
-<br /> to test if everything worked create `testGLFW.cpp` and copy the contents of [GLFW's quickstart guide]() into it, then build and run
+<br /> to test if everything worked create `testGLFW.cpp` and copy the contents of [GLFW's quickstart guide](https://www.glfw.org/documentation.html) into it, then build and run
